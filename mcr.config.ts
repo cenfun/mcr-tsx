@@ -1,43 +1,10 @@
+// import type { CoverageReportOptions } from "monocart-coverage-reports";
 import fs from 'fs';
 import path from 'path';
-import os from 'os';
-const { geteuid } = process;
-// import type { CoverageReportOptions } from "monocart-coverage-reports";
-
-let caches;
-const getCaches = () => {
-    const userId = geteuid ? geteuid() : os.userInfo().username;
-    const tmpdir = path.join(os.tmpdir(), `tsx-${userId}`);
-    const files = fs.readdirSync(tmpdir);
-    return files.map((filename) => {
-        const content = fs.readFileSync(path.resolve(tmpdir, filename)).toString('utf8');
-        const json = JSON.parse(content);
-        return json;
-    });
-};
-
-const getRealSourceFromCache = (entry) => {
-    if (!caches) {
-        caches = getCaches();
-    }
-
-    const item = caches.find((cache) => {
-        if (cache.map.mappings === entry.sourceMap.mappings) {
-            return true;
-        }
-    });
-
-    // console.log(item, entry.sourceMap);
-
-    if (item) {
-        entry.source = item.code;
-        entry.fake = false;
-    }
-
-};
+import { getSnapshot, diffSnapshot } from 'monocart-coverage-reports';
 
 const coverageOptions = {
-    // logging: "debug",
+    // logging: 'debug',
 
     reports: [
         ['v8'],
@@ -49,14 +16,44 @@ const coverageOptions = {
         '**/src/**': true
     },
 
-    onEntry: (entry) => {
+    onEnd: (coverageResults) => {
 
-        // get the source for fake entry from tsx cache
-        if (entry.fake && entry.sourceMap) {
-            getRealSourceFromCache(entry);
+        const snapDir = path.resolve(import.meta.dirname, 'snapshot');
+        if (!fs.existsSync(snapDir)) {
+            fs.mkdirSync(snapDir, {
+                recursive: true
+            });
+        }
+
+        const newSnapshot = getSnapshot(coverageResults);
+        const id = coverageResults.reportPath.split('/')[1];
+        const snapPath = path.resolve(snapDir, `${id}.snapshot.json`);
+
+        if (!fs.existsSync(snapPath) || process.env.TEST_SNAPSHOT) {
+            fs.writeFileSync(snapPath, JSON.stringify(newSnapshot, null, 4));
+            return;
+        }
+
+        const oldSnapshot = JSON.parse(fs.readFileSync(snapPath).toString('utf-8'));
+
+        const diff = diffSnapshot(oldSnapshot, newSnapshot, {
+        // skipEqual: false,
+        // showSummary: false,
+            maxCols: 30,
+            metrics: []
+        });
+
+        const snapName = path.basename(snapPath);
+        if (diff.change) {
+            console.log(`ERROR: Snapshot does not match reference: ${snapName}`);
+            console.log(diff.message);
+            process.exit(1);
+        } else {
+            console.log(`Snapshot matched: ${snapName}`);
         }
 
     }
+
 };
 
 export default coverageOptions;

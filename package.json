@@ -4,18 +4,22 @@
     "description": "mcr-tsx",
     "type": "module",
     "scripts": {
-        "test": "cross-env NODE_OPTIONS=\"--import tsx --no-warnings\" npx mcr tsx ./src/example.ts -o coverage-reports/ts",
-        "mocha": "cross-env NODE_OPTIONS=\"--import tsx --no-warnings\" npx mcr mocha ./test/**/*.ts -o coverage-reports/mocha"
+        "test:tsx": "cross-env NODE_OPTIONS=\"--import tsx\" npx mcr tsx ./src/example.ts -o coverage-reports/tsx",
+        "test:mocha": "cross-env NODE_OPTIONS=\"--import tsx\" npx mcr mocha ./test/**/*.ts -o coverage-reports/mocha",
+        "test:mcr:tsx": "npx mcr --import tsx tsx ./src/example.ts -o coverage-reports/mcr-tsx",
+        "test:mcr:mocha": "npx mcr --import tsx mocha ./test/**/*.ts -o coverage-reports/mcr-mocha",
+        "test": "npm run test:tsx && npm run test:mocha && npm run test:mcr:tsx && npm run test:mcr:mocha"
     },
     "license": "MIT",
+    "dependencies": {},
     "devDependencies": {
         "@types/mocha": "^10.0.6",
-        "@types/node": "^20.11.26",
+        "@types/node": "^20.11.27",
         "cross-env": "^7.0.3",
         "eslint": "^8.57.0",
         "eslint-config-plus": "^1.0.6",
         "mocha": "^10.3.0",
-        "monocart-coverage-reports": "^2.7.0",
+        "monocart-coverage-reports": "^2.7.1",
         "tsx": "^4.7.1"
     }
 }

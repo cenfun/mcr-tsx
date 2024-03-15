@@ -1,0 +1,20 @@
+{
+    "type": "v8",
+    "summary": {
+        "bytes": "38.46 %",
+        "statements": "16.67 %",
+        "branches": "0.00 %",
+        "functions": "0.00 %",
+        "lines": "38.10 %"
+    },
+    "files": {
+        "workspace/mcr-tsx/src/example.ts": {
+            "functions": "0.00 %",
+            "branches": "0.00 %",
+            "statements": "16.67 %",
+            "lines": "38.10 %",
+            "bytes": "38.46 %",
+            "uncoveredLines": "6-21"
+        }
+    }
+}
