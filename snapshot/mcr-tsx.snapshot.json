@@ -8,7 +8,7 @@
         "lines": "38.10 %"
     },
     "files": {
-        "workspace/mcr-tsx/src/example.ts": {
+        "src/example.ts": {
             "functions": "0.00 %",
             "branches": "0.00 %",
             "statements": "16.67 %",
