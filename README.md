@@ -1,5 +1,5 @@
 # mcr-tsx
-[Monocart Coverage Reports](https://github.com/cenfun/monocart-coverage-reports) + tsx TypeScript
+[Monocart Coverage Reports](https://github.com/cenfun/monocart-coverage-reports) + [tsx](https://github.com/privatenumber/tsx/) (TypeScript Execute: The easiest way to run TypeScript in Node.js) 
 
 ## Install
 ```sh
