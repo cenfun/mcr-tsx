@@ -1,11 +1,11 @@
 {
     "type": "v8",
     "summary": {
-        "bytes": "80.55 %",
-        "statements": "66.67 %",
+        "bytes": "78.34 %",
+        "statements": "70.59 %",
         "branches": "0.00 %",
-        "functions": "75.00 %",
-        "lines": "77.78 %"
+        "functions": "71.43 %",
+        "lines": "75.68 %"
     },
     "files": {
         "test/exmple.test.ts": {
@@ -23,6 +23,14 @@
             "lines": "71.43 %",
             "bytes": "71.57 %",
             "uncoveredLines": "6-12"
+        },
+        "src/index.ts": {
+            "functions": "50.00 %",
+            "branches": "",
+            "statements": "60.00 %",
+            "lines": "50.00 %",
+            "bytes": "55.47 %",
+            "uncoveredLines": "5-7"
         }
     }
 }
