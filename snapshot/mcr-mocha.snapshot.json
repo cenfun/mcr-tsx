@@ -1,13 +1,21 @@
 {
     "type": "v8",
     "summary": {
-        "bytes": "71.57 %",
-        "statements": "50.00 %",
+        "bytes": "80.55 %",
+        "statements": "66.67 %",
         "branches": "0.00 %",
-        "functions": "50.00 %",
-        "lines": "71.43 %"
+        "functions": "75.00 %",
+        "lines": "77.78 %"
     },
     "files": {
+        "test/exmple.test.ts": {
+            "functions": "100.00 %",
+            "branches": "",
+            "statements": "100.00 %",
+            "lines": "100.00 %",
+            "bytes": "100.00 %",
+            "uncoveredLines": ""
+        },
         "src/example.ts": {
             "functions": "50.00 %",
             "branches": "0.00 %",

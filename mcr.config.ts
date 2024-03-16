@@ -13,7 +13,8 @@ const coverageOptions = {
 
     entryFilter: {
         '**/node_modules/**': false,
-        '**/src/**': true
+        '**/src/**': true,
+        '**/test/**': true
     },
 
     onEnd: (coverageResults) => {
