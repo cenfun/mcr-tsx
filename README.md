@@ -1,5 +1,5 @@
 # mcr-tsx
-Monocart Coverage Reports + tsx TypeScript
+[Monocart Coverage Reports](https://github.com/cenfun/monocart-coverage-reports) + tsx TypeScript
 
 ## Install
 ```sh
@@ -26,3 +26,5 @@ Node.js v20.6.0 +
 ```js
 npx mcr --import tsx mocha ./test/**/*.ts
 ```
+
+Check [monocart-coverage-reports](https://github.com/cenfun/monocart-coverage-reports) for more CLI options.
