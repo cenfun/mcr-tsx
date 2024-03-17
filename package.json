@@ -19,7 +19,7 @@
         "eslint": "^8.57.0",
         "eslint-config-plus": "^1.0.6",
         "mocha": "^10.3.0",
-        "monocart-coverage-reports": "^2.7.2",
+        "monocart-coverage-reports": "^2.7.3",
         "tsx": "^4.7.1"
     }
 }
