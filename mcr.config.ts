@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { getSnapshot, diffSnapshot } from 'monocart-coverage-reports';
+import EC from "eight-colors"
 
 const coverageOptions = {
     // logging: 'debug',
@@ -47,11 +48,11 @@ const coverageOptions = {
 
         const snapName = path.basename(snapPath);
         if (diff.change) {
-            console.log(`ERROR: Snapshot does not match reference: ${snapName}`);
+            EC.logRed(`❌ ERROR: Snapshot does not match reference: ${snapName}`);
             console.log(diff.message);
             process.exit(1);
         } else {
-            console.log(`Snapshot matched: ${snapName}`);
+            EC.logGreen(`✅ Snapshot matched: ${snapName}`);
         }
 
     }
